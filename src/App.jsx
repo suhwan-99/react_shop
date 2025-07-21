@@ -8,6 +8,7 @@ import Detail from './pages/Detail';
 import About from './pages/About';
 import styled from 'styled-components';
 import axios from 'axios';
+import Cart from './pages/Cart';
 
 // styled-componet 기본 사용법
 // const 컴포넌트 이름 지정= styled.태그명 `css속성`
@@ -57,6 +58,7 @@ function App() {
         <Route path='/' element={< MainPage frult={frult}/>} />
         <Route path='/detail/:id' element={<Detail frult={frult}/>} />
         <Route path='/test' element={<h1>테스트페이지</h1>} />
+        <Route path='/cart' element={<Cart />} />
         <Route path='/about' element={ <About />} >
           {/* 하위 라우트들은 상위 라우트 안에, path도 상위 경로 x 본인것만 /없어도 됨 */}
           <Route path='intro' element={<div> <h1>회사 소개</h1></div> } />

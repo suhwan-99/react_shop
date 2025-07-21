@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { Nav } from "react-bootstrap";
 import { useParams } from "react-router-dom"
+import TabContent from "../components/TabContent";
 
 function Detail({frult}) {
   const {id} = useParams();
@@ -7,6 +9,7 @@ function Detail({frult}) {
   const [alert, setAlert] = useState(true);
   const [num, setNum] = useState(0);
   const [num2, setNum2] = useState(0);
+  const [tabNum, setTabNum] = useState(0);
 
   // useEffect는 html이 전부다 렌더링이 완료된 후 실행이 됨
   useEffect(() => {
@@ -61,6 +64,25 @@ function Detail({frult}) {
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
+
+      <Nav className="mt-5" variant="tabs" justify defaultActiveKey="link-0">
+        <Nav.Item>
+          <Nav.Link eventKey="link-0" onClick={() => {
+            setTabNum(0);
+          }}>상세정보</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1" onClick={() => {
+            setTabNum(1);
+          }}>리뷰</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-2" onClick={() => {
+            setTabNum(2);
+          }}>반품, 교환</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent tabNum={tabNum} />
     </div>
   )
 }
