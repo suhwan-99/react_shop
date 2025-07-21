@@ -6,7 +6,7 @@ function Card({data}) {
     <div className='col-md-4' onClick={() => {
       navigate('/detail/' + data.id);
     }}>
-      <img src={`${import.meta.env.BASE_URL}img/${data.title}.jpg`} alt="" width='80%'/>
+      <img src={`https://raw.githubusercontent.com/ghkdss/react_sample_data/main/img/${data.title}.jpg`} alt="" width='80%'/>
       <h4>{data.title}</h4>
       <p>{data.content}</p>
       <h3>{data.price + '원'}</h3>

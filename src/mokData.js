@@ -16,7 +16,7 @@ let data = [
     title: 'watermelon',
     content: '시원하고 과즙 가득한 수박',
     price: 20000
-  },
+  }
 ]
 
 export default data;
