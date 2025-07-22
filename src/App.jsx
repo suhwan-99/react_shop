@@ -1,5 +1,4 @@
 import style from './App.module.css'
-import data from './mokData';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';

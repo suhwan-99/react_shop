@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 import { useParams } from "react-router-dom"
 import TabContent from "../components/TabContent";
+import { addItem } from "../redux/CartSlice";
+import { useDispatch } from "react-redux";
 
 function Detail({frult}) {
   const {id} = useParams();
@@ -10,6 +12,7 @@ function Detail({frult}) {
   const [num, setNum] = useState(0);
   const [num2, setNum2] = useState(0);
   const [tabNum, setTabNum] = useState(0);
+  const dispatch = useDispatch();
 
   // useEffect는 html이 전부다 렌더링이 완료된 후 실행이 됨
   useEffect(() => {
@@ -61,7 +64,15 @@ function Detail({frult}) {
           <h4>{frult[id].title}</h4>
           <p>{frult[id].content}</p>
           <p>{frult[id].price + '원'}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button className="btn btn-danger" onClick={() => {
+            const item = {
+              id: id,
+              title: frult[id].title,
+              count: 1,
+            }
+            dispatch(addItem(item));
+            window.alert('장바구니에 추가 완료');
+          }}>주문하기</button>
         </div>
       </div>
 
