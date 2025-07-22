@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import  cart  from "./CartSlice";
+import watched from "./WatchedSlice";
 
 
 const num =  createSlice({
@@ -43,5 +44,6 @@ export default configureStore({
     cart: cart.reducer,
     num: num.reducer,
     obj: obj.reducer,
+    watched: watched.reducer,
   }
 })

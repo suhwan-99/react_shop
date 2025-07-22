@@ -8,6 +8,7 @@ import About from './pages/About';
 import styled from 'styled-components';
 import axios from 'axios';
 import Cart from './pages/Cart';
+import WatchedProduct from './components/watchedProduct';
 
 // styled-componet 기본 사용법
 // const 컴포넌트 이름 지정= styled.태그명 `css속성`
@@ -38,13 +39,17 @@ function App() {
         console.log(error);
     })
   },[])
-     
+  
+  useEffect(() => {
+    localStorage.setItem('watched', JSON.stringify([]));
+  },[])
   
   
     
 
   return (
     <div className={style.container}>
+      <WatchedProduct frult={frult}/>
       {/* css가 반영된 Btn태그를 사용 */}
       {/* <Div>
         <Btn bg='pink'>버튼</Btn>

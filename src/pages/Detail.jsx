@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import TabContent from "../components/TabContent";
 import { addItem } from "../redux/CartSlice";
 import { useDispatch } from "react-redux";
+import { setWatched } from "../redux/WatchedSlice";
 
 function Detail({frult}) {
   const {id} = useParams();
@@ -18,7 +19,6 @@ function Detail({frult}) {
   useEffect(() => {
     //여기에 작성된 모든 코드들은 마운트, 업데이트 될때 실행
    let timer =  setTimeout(() => {
-      console.log('setTime 종료');
       setAlert(false);
     }, 5000)
     
@@ -32,13 +32,33 @@ function Detail({frult}) {
          // 의존성 배열에 빈 배열을 넣으면 mount 시 1번만 실행 됨
          // 의존성 배열에 특정 state, props가 있으면
          // mount 될때와 해당 state, props가 update 될때 실행 됨
-  useEffect(() => {
-    console.log('useEffect 확인용');
-  }, [num])
+  // useEffect(() => {
+  //   console.log('useEffect 확인용');
+  // }, [num])
     
   if(!selectedFruit) {
     return (<div>해당 상품이 없습니다.</div>)
   }
+
+  useEffect(() => {
+    // 방금 본 상품의 id를 로컬스토리지에 추가
+    let watched = localStorage.getItem('watched');
+    watched = JSON.parse(watched);
+    watched = [id, ...watched];
+    
+    // 중복되는 id는 표시 안하려면 Set 을 이용
+    watched = new Set(watched);
+    // Set은 배열X  >> 중복 제거 후 배열로 변환
+    watched = Array.from(watched);
+    if(watched.length === 4) {
+      watched.pop();
+    }
+    localStorage.setItem('watched', JSON.stringify(watched));
+    dispatch(setWatched(watched));
+
+
+  }, [])
+
   return(
     <div className="container mt-3">
       <button onClick={() => {

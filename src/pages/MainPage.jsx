@@ -4,7 +4,7 @@ import { useState } from 'react';
 function MainPage({frult}) {
   const [frultCnt, setFrultCnt] = useState(3);
   const visibleFrult = frult.slice(0, frultCnt);
-  console.log(visibleFrult);
+  // console.log(visibleFrult);
   return (
     <>
     <div className="main-bg" style={{backgroundImage: 'url(' + bg + ')', height: '400px'}}></div>
