@@ -5,6 +5,7 @@ import TabContent from "../components/TabContent";
 import { addItem } from "../redux/CartSlice";
 import { useDispatch } from "react-redux";
 import { setWatched } from "../redux/WatchedSlice";
+import { setPageTitle } from "../util/setTitle";
 
 function Detail({frult}) {
   const {id} = useParams();
@@ -58,6 +59,10 @@ function Detail({frult}) {
 
 
   }, [])
+
+  useEffect(() => {
+      setPageTitle(`${id}번 상품`);
+    })
 
   return(
     <div className="container mt-3">
